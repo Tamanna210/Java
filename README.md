@@ -47,4 +47,81 @@ bash terminal> mysql -u "root" -p
 mysql> exit
 
 ```
-=================================
+======================================================================
+
+OOP ==> Object Oriented Paradigm
+
+Object contains state and behaviour
+
+Tv --> State is on/off, channel, volume
+	--> Actions/ Behaviour
+
+Account --> State ==> Balance
+	Behaviour ==> Credit / debit / interest Rate
+
+Message thro interface
+
+==> Abstraction
+
+--------------
+
+SOLID design principle
+
+S --> Single Responsibility [Object to communitate with persistent layer [ CRUD]; should not handle UI]
+
+O --> open Close Principle [ Closed for Change; open for extension]
+
+L --> Liskov Substitution Principle
+
+I --> Interface seggregation
+
+D --> Dependency Injection [ Inversion Of Control ]
+
+=======================================================
+
+Java --> Technology
+
+--> Platform to execute bytecode
+
+Bytecode?
+
+Source Code ==> Compile ==> bytecode
+
+Groovy ==> Groovyc ==> bytecode
+Kotlin  ==> KotlinC ==> bytecode
+Java ==> javac ==> bytecode ==> JDK
+
+=============
+
+Example.java
+
+public class Example {
+	public static void main(String[] args) {
+		doTask();
+	}	
+
+	private static void doTask() {
+		String s1 = new String("Hello");
+		String s2 = new String("World");
+		System.out.println( s1 + s2);
+		System.out.println("Bye!!!");
+	}
+}
+
+
+javac Example.java ==> Example.class [ bytecode] ==> platform independent / Architecture neutral
+
+Secondary Storage ==> Classloader ==> Primary Storage
+
+ClassLoader methods:
+findLoadedClass()
+loadClass()
+findSystemClass()
+defineClass()
+
+
+======================================
+
+
+
+
