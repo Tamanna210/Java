@@ -1,5 +1,7 @@
 package com.adobe.prj.client;
 
+import java.lang.reflect.Method;
+
 import com.adobe.prj.entity.Mobile;
 import com.adobe.prj.entity.Product;
 import com.adobe.prj.entity.Tv;
@@ -15,7 +17,29 @@ public class ProductClient {
 		products[4] = new Mobile(844, "Oppo", 9999.00, "4G");
 
 		printExpensive(products);
-		printDetails(products);
+//		printDetails(products);
+		printDetailsOCP(products);
+	}
+
+	// OCP way?
+	private static void printDetailsOCP(Product[] products) {
+		for(Product p : products) {
+			Method[] methods =  p.getClass().getMethods();
+			for(Method m : methods) {
+				if(m.getName().startsWith("get")) {
+					System.out.print(m.getName().substring(3).toUpperCase()); // ID, PRICE, NAME
+					System.out.print(" : ");
+					try {
+						Object ret  = m.invoke(p); // p.getId();
+						System.out.println(ret);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+			}
+			System.out.println("*****");
+		}
 	}
 
 	// is this OCP?

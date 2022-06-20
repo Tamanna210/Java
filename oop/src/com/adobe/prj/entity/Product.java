@@ -1,6 +1,8 @@
 package com.adobe.prj.entity;
 
-public abstract class Product  {
+import com.adobe.prj.utility.IComparable;
+
+public abstract class Product implements IComparable {
 	private int id;
 	private String name;
 	private double price;
@@ -43,4 +45,9 @@ public abstract class Product  {
 //	}
 	
 	public abstract boolean isExpensive(); // pure virtual fn
+	
+	public int compare(Object other) {
+		Product p = (Product) other;
+		return (int) (this.price - p.price);
+	}
 }

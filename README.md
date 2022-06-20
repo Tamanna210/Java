@@ -388,3 +388,157 @@ p.getPrice(); // 555 ==> Runtime binding
 p.getConnectivity(); // Compilation ERROR
 
 ================================================================
+
+Mobile[]
+Tv[]
+Microwave[] 
+
+for(Mobile m : mobiles) {
+
+}
+
+for(Tv t : tvs) {
+
+}
+
+for(Microwave m : mws) {
+
+}
+
+
+============
+ 
+* extends
+* super()
+* override
+* abstract class 
+* abstract methods
+* Why Upcasting and OCP
+* Before downcasting we need to do the typechecking
+==> instanceof opertor
+==> getClass()
+
+
+Product p = new Tv();
+
+p instanceof Product ==> true
+p instanceof Tv ==> true
+p instanceof Object ==> true
+p instanceof Mobile ==> false
+
+--
+
+p.getClass() === Tv.class ==> true
+p.getClass() === Product.class ==> false
+
+all other conditions fail
+
+=============================================
+If we know the method names:
+
+context.behaviour();
+
+p.getId(); ==> getId(p); ==> within getId() "this" refers to "p"
+p.getName();
+
+====
+
+Reflection API
+m being a pointer to a method:
+
+m.invoke(context);
+
+
+
+"Hello".substring(1); // ello
+
+"Hello".substring(1,3); // ell
+
+"getName".substring(3); // Name
+
+==================================================================
+
+* Object is the root of all classes in Java
+
+Object p = new Mobile();
+
+Object p = new Tv();
+
+Object a = new Account();
+
+================
+
+* extends is for inheritance; ==> java doesn't support multiple inheritance
+
+class A extends B, C { // not valid
+
+=============================================================
+
+note on final keyword.
+
+1) to declare a constant
+
+private static final double PI = 3.14159;
+
+2) to prevent inheritance
+
+public final class System {
+
+}
+
+class ESystem extends System { // error
+
+3) to prevent override
+
+class Account {
+	final boolean login(String user, String pwd) {///}
+}
+
+class SavingsAccount extends Account {
+	 boolean login(String user, String pwd) {///}	// error
+}
+
+
+4) constant pointer
+
+final int[] data = {62,22,6};
+
+data[0] = 100; // valid
+
+data = new int[2]; // error
+
+---
+
+final Product p = new Product("iphone", 89000.00);
+
+p.setPrice(982122); // valid
+
+p = new Product(...); // error
+
+================================================
+
+* Realization relationship
+
+One object defines the protocol; other objects are realize them in order to communicate
+
+"interface" used for realization relationship
+
+"interface" can't have state and behaviour;
+
+public interface EmployeeDao {
+	void addEmployee(Employee e);
+	Employee getEmployee(int id);
+}
+
+methods are abstract and public by default
+
+Why program to interface?
+* DESIGN
+* IMPLMENTATION
+* TESTING
+* INTEGRATION
+* LOOSE COUPLING ==> Switch between strategies
+* OCP
+---
+
+In development we create entities and interfaces as common modules ==> used by all team members working on different modules.
