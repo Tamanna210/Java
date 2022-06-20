@@ -224,11 +224,167 @@ Java 11 ==> G1GC
 =============================
 
 How many instances of Account are created?
+use static variable for this
+
+private static int count;
 
 ===
 
 static methods can't access instance variables [ first argument implicit "this" is not passed to the method]
 instance methods can access static variables
 
-===============
+============================================================================
 
+Relationship between objects:
+
+1) Generalization and Specialization
+2) Realization
+3) Association
+4) Uses A
+
+
+
+Generalization and Specialization:
+
+---
+
+Static code analysis --> CI tool Jenkis 
+
+SonarQube ==> FindBugs/ PMD , Checkstyle
+
+CheckStyle ==> Coding conventions
+* Naming conventions for class, method, var and constants
+* Comments ==> single , multiline and JavaDoc
+
+FindBugs / PMD:
+* empty conditional statement
+if(condition) {
+
+} else {
+	code
+}
+
+* empty catch block
+
+try {
+
+}catch(Exception ex){}
+
+* Unreachable code
+
+if(true) {
+	return "a";
+}
+
+return "b";
+
+* Copy paste code
+
+===
+
+DRY principle ==> Don't Repeat Yourself
+
+
+Mobile Has a Tata Sky App
+
+Mobile is a Tv
+
+===========================================
+"extends" for Generalization and Specialization relationship ==> inheritance
+
+class Product {
+	id, name , price
+}
+
+// mobile inherits product
+class Mobile extends Product {
+	connectivity;
+	..
+}
+
+class Tv extends Product {
+
+}
+
+============
+
+class Object {}
+
+class Product extends Object {
+	Product() {
+		"p1"
+	}
+
+	Product(int id, String name) {
+		"p2"
+	}
+}
+
+class Mobile extends Product {
+	Mobile() {
+		"m1"
+	}
+
+	Mobile(int id, String name, String connectivity) {
+		"m2"
+	}
+}
+
+
+case 1:
+new Mobile(); // p1 & m1
+
+case 2:
+new Mobile(52,"iPhone 12", 89000.00); // p1 & m2
+
+
+With changes:
+Mobile(int id, String name, String connectivity) {
+		super(id, name);
+		"m2"
+	}
+
+
+case 2:
+new Mobile(52,"iPhone 12", 89000.00); // p2 & m2
+
+
+================================
+
+class Product {
+	public int getPrice() {
+		return 900;
+	}
+
+	public int getId() {
+		return 100;
+	}
+}
+
+
+class Mobile extends Product {
+	// override
+	public int getPrice() {
+		return 555;
+	}
+
+	public String getConnectivity() {
+		return "4G";
+	}
+}
+
+Case 1:
+Mobile m = new Mobile();
+m.getId(); // 100
+m.getPrice(); // 555
+m.getConnectivity(); // 4G
+
+Case 2:
+
+Product p = new Mobile(); // upcasting ==> valid
+
+p.getId(); // 100
+p.getPrice(); // 555 ==> Runtime binding 
+p.getConnectivity(); // Compilation ERROR
+
+================================================================
