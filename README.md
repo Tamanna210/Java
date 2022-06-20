@@ -198,3 +198,37 @@ cmd + shift + o ==> organize imports
 Windows:
 cntrl + shift + o ==> organize imports
 
+============================
+
+In C++;
+
+Account acc; // creates object on stack
+
+In Java:
+objects are always on Heap area
+
+Reference types: array, object ==> always on heap area
+
+======================
+
+GC ==> Garbage Collector is responsilbe for cleaing up of any unused memory in heap area.
+
+Not required:
+delete acc;
+free ptr;
+
+System.gc();
+
+Java 11 ==> G1GC
+
+=============================
+
+How many instances of Account are created?
+
+===
+
+static methods can't access instance variables [ first argument implicit "this" is not passed to the method]
+instance methods can access static variables
+
+===============
+
