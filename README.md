@@ -122,9 +122,79 @@ defineClass()
 
 ======================================
 
-Resume @11:20
+Person.java ==> javac Person.java ==> Person.class
+public class Person {
+	private String name;
+	private int age;
+ 	
+ 	public void setName(String name) {
+ 		this.name = name;
+ 	}
+
+ 	public int getAge() {
+ 		return this.age;
+ 	}
+}
+
+Example.java ==> Example.class
+public class Example {
+	public static void main(String[] args) {
+		Person p1 = new Person();
+		p1.setName("Kim");
+
+		Person p2 = new Person();
+		p2.setName("Anna");
+			
+	}
+}
 
 
 
+context.behaviour(argument);
 
+p1.setName("kim") ==> setName(p1, "Kim");
+
+
+======================
+
+Logically grouping of classes/objects for enterprise application
+
+1) Entity classes
+	represent business data ==> long lived data; data survives system crash
+	Amazon ==> Product, Customer, Order
+
+	Product.java, Customer.java, Order.java
+
+	==> contains fields like email, firstName, lastName, ...
+	==> constructor
+	==> getters / setters
+		getName(), setName(), getAge(), setAge()
+	==> equals() and hashCode() for object identifictaion
+
+2) DAO classes ==> Data Access Object
+	classes to interact with persistence mechansime like RDBMS / NoSQL like MongoDB	/ file
+	CRUD operation
+	like for RDBMS
+	insert, select, update, delete code
+
+3) Service classes ==> acts like a facade on DAO and business code
+
+4) Exception classes ==> they represent any abnormal condition in application
+
+5) Utility classes ==> helpers [ DateTime Format/ sorting / filtering]
+
+6) UI classes ==> Andriod / Web Tech / Standalone
+
+
+================
+
+
+package ==> folder for logically grouping classes
+
+
+Mac:
+cmd + shift + o ==> organize imports
+
+Windows:
+cntrl + shift + o ==> organize imports
 
