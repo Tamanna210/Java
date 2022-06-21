@@ -542,3 +542,51 @@ Why program to interface?
 ---
 
 In development we create entities and interfaces as common modules ==> used by all team members working on different modules.
+
+========================
+
+Task:
+
+* Naming Conventions
+* Comments ==> single, multiline and JavaDoc
+* Checkstyle plugin for elipse 
+
+
+====================
+
+Day 2
+
+Recap:
+* Object and class
+* Genaralization and Specialization
+* abstract and final
+* override ==> Dynamic binding / Polymorphism
+* java.lang.reflect.Method ==> invoke()
+* interface [ can't have state; contains public abstract methods]
+* Realization relationship
+
+======================================
+
+Zero changes in client:
+
+Android
+BookDao bookDao = BookDaoFactory.getBookDao();
+
+Web
+BookDao bookDao = BookDaoFactory.getBookDao();
+
+Standalone app
+BookDao bookDao = BookDaoFactory.getBookDao();
+
+
+=============
+Make changes in Factory class:
+public class BookDaoFactory {
+	public static BookDao getBookDao() {
+		return new BookDaoMongoDbImpl();
+	}
+}
+
+=====================================================================
+
+

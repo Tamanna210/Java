@@ -1,6 +1,6 @@
 package com.adobe.prj.entity;
 
-public class Tv extends Product {
+public class Tv extends Product  {
 	private String screenType;
 
 	public Tv() {
