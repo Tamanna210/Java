@@ -954,10 +954,23 @@ https://rxmarbles.com/
 
 
 
+Intermediary operations
+filter
+map
+flatMap
 
 
+Terminal operations
+forEach()
+collect()
+reduce()
+
+Data won;t flow if there are no Terminal operations
 
 
+========
 
+Resume @ 4:20
 
+======================
 

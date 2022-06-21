@@ -1,6 +1,7 @@
 package com.adobe.prj.client;
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,11 +32,30 @@ public class StreamExample {
 //			System.out.println(p);
 //		}
 		
-		products.stream()
+// 		ForkJoin algorithm
+//		products.stream()
+		products.parallelStream()
 			.map(elem -> elem.getName())
 			.forEach(elem -> System.out.println(elem));
 		
 		System.out.println("**********");
+		
+		System.out.println("Reduce: sum of price of products..");
+		double total = products.parallelStream()
+//			.filter(p -> p.getCategory().equals("mobile"))
+			.map(elem -> elem.getPrice())
+			.reduce(0.0 , (v1, v2) -> v1 + v2);
+		
+		System.out.println("Total :" + total);
+		
+		DoubleSummaryStatistics stats = 
+				products.stream()
+				.collect(Collectors.summarizingDouble(p -> p.getPrice()));
+		
+		System.out.println("Max : " + stats.getMax());
+		System.out.println("Min : " + stats.getMin());
+		System.out.println("Total : " + stats.getSum());
+		System.out.println("Count : " + stats.getCount());
 	}
 
 }
