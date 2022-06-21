@@ -49,7 +49,15 @@ public class SortClient {
 		
 		System.out.println("*********");
 		
-		Arrays.sort(products, (p1, p2) -> (int) (p1.getPrice() - p2.getPrice()));
+//		Arrays.sort(products, (p1, p2) -> (int) (p1.getPrice() - p2.getPrice()));
+		Arrays.sort(products, (p1, p2) -> {
+			int diff = (int) (p1.getPrice() - p2.getPrice());
+			if(diff == 0) {
+				diff =  p1.getId() - p2.getId();
+			}
+			return diff;
+		});
+		
 		for(Product p : products) {
 			System.out.println(p); // toString()
 		}

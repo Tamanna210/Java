@@ -893,9 +893,52 @@ Comparator c2 = new Comparator() {
 }
 
 =====================================
+Array --> limitations 
+
+List is a data container.
+* ordered
+* duplicates
+* index based operations supported [ get(29), add("a", 4); remove(10)]
+* re-order [ sort , shuffle, reverse , ..]
 
 
- 
+List interface:
+--> LinkedList [ no need for contiguos memory, adding and remove from arbitrary position is easy]
+	Disadvantage: each data adds 8 bytes extra [ prev and next pointer]
+	* AAdhar project
+--> ArrayList
+	--> like array; can grow or shrink
+--> Vector (legacy)
+--> Apache Commons Collection
+--> Vavr ==> vavr.io
+
+=============
+Avoid:
+
+List list = new ArrayList();
+List list = new LinkedList();
+
+list.add("a");
+list.add(new Product());
+list.add(new Date());
+
+if(list.get(0) instanceof String) {
+	String s = (String) list.get(0);
+}
+
+Better:
+
+List<String> list = new ArrayList<String>(); 
+
+String s = list.get(0);
+
+============================================
+
+
+
+
+
+
 
 
 
