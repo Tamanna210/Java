@@ -967,10 +967,28 @@ reduce()
 
 Data won;t flow if there are no Terminal operations
 
+* Streams are lazy ==> only on connecting terminal operation ==> data flow
 
-========
 
-Resume @ 4:20
+reduce() to get aggreate ==> sum(), count(), avg(), max(), min()
 
-======================
+=====================
+
+Task 1:
+data
+
+Input:
+[6,3,11,20,25,10]
+
+Get sum of even number
+
+
+Task 2:
+Read basics of Exception handling in Java
+
+==========================================================
+
+
+
+
 

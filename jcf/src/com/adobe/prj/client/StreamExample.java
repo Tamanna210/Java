@@ -44,7 +44,7 @@ public class StreamExample {
 		double total = products.parallelStream()
 //			.filter(p -> p.getCategory().equals("mobile"))
 			.map(elem -> elem.getPrice())
-			.reduce(0.0 , (v1, v2) -> v1 + v2);
+			.reduce(0.0 , (v1, v2) ->  v1 + v2);
 		
 		System.out.println("Total :" + total);
 		
@@ -56,6 +56,7 @@ public class StreamExample {
 		System.out.println("Min : " + stats.getMin());
 		System.out.println("Total : " + stats.getSum());
 		System.out.println("Count : " + stats.getCount());
+		System.out.println("Avg : " + stats.getAverage());
 	}
 
 }
