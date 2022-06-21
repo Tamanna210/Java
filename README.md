@@ -589,4 +589,63 @@ public class BookDaoFactory {
 
 =====================================================================
 
+Switch between strategies without any changes in code
+
+* configuration files
+
+Class.forName("java.util.Date"); // load Date class into JRE
+
+Class.forName("com.adobe.prj.entity.Book"); // load Book class into JRE
+
+Class.forName("com.adobe.prj.entity.Book.BookDaoMongoDbImpl");// load BookDaoMongoDbImpl
+
+
+ResourceBundle.getBundle("com.adobe.prj.dao.config")
+
+ResourceBundle.getBundle("config.properites") // properties.properties in "config" package
+
+
+BookDao b = (BookDao) new Object(); // downcasting
+
+Object o = new BookDao(); // upcasting
+
+i18N
+
+messages.properties
+DONE=Sucesss!!!
+
+messages_hi.properties
+DONE=message in hindi
+
+messages_fr.properties
+DONE= ....
+
+
+============================================================
+
+interface Dance {
+	void dance();
+}
+
+interface Fight {
+	void fight();
+}
+
+interface Swim {
+	void swim();
+}
+
+// Actor knows to Dance // realizes to dance
+class Actor implements Dance {
+	dance() {...}
+}
+
+// Hero is a Actor [can dance ] and also knows to fight and swim
+class Hero extends Actor implements Fight, Swim {
+	fight() {//}
+	swim() {//}
+}
+
+
+======================================================
 
