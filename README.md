@@ -817,3 +817,86 @@ class AeroPlane implements Flyable {
 void travel(Flyable f) {
 
 }
+
+===========================================
+
+Builtin @FuntionalInterface
+
+1) Predicate
+@FunctionalInterface
+public interface Predicate<T> {
+	   boolean test(T t);
+}
+
+2) Comparator
+@FunctionalInterface
+public interface Comparator<T> {
+	int compare(T o1, T o2);
+}
+
+3) Consumer
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+
+4) Function
+@FunctionalInterface
+public interface Function<T, R> {
+	 R apply(T t);
+}
+
+5) Bifunction
+
+===============================================================
+
+Java Collection Framework
+
+--------------------------
+
+provides solution for datacontainers [ Data Structures]
+
+* Array is a data container
+
+JCF:
+* interfaces
+* implmentations
+* Algorithm classes [ sort, max, min, binarySearch... , reverse, ...]
+
+--
+
+Comparable ==> Natural comparsion, logic is a part of object itself [ Primary Key]
+Comparator ==> client specific way of compare, logic is in client code
+
+public class Product implements Comparable<Product> {
+	id, name, category, quantity, price;
+	 public int compareTo(Product o) {
+	 	// based on id
+	 }
+}
+
+===
+
+Client 1:
+
+Comparator c1 = new Comparator() {
+	int compare(o1, o2) {
+		return price diff
+	}
+}
+
+
+Comparator c2 = new Comparator() {
+	int compare(o1, o2) {
+		return quatity diff
+	}
+}
+
+=====================================
+
+
+ 
+
+
+
+
