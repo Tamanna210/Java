@@ -936,6 +936,24 @@ String s = list.get(0);
 
 
 
+Stream: sequence of data flowing from a channel
+
+on Stream we can use the following HOF ==> High Order Functions
+
+HOF ==> functions which accept other function as arguments / function return a function [ treat function as first-class member
+like object or primitive]
+
+* HOF 
+1) filter
+2) map
+3) forEach
+4) reduce
+5) flatMap
+ 
+https://rxmarbles.com/
+
+
+
 
 
 
