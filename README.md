@@ -647,5 +647,173 @@ class Hero extends Actor implements Fight, Swim {
 }
 
 
-======================================================
+===========================================================
 
+Generics
+
+class IRectangle {
+	int width, breadth;
+}
+
+class BRectangle {
+	byte width, breadth;
+}
+
+
+class Rectangle<T> {
+	T width;
+	T breadth;
+}
+
+
+ Rectangle<Integer> r1 = new Rectangle<Integer>(3,4);
+
+ Rectangle<Double> r2 = new Rectangle<Double>(3.2,4.4);
+
+ Rectangle<String> r3 = new Rectangle<String>("A","B"); // valid
+
+===
+
+Generic type can be Object type, not primitive
+
+Integer is a TypeWrapper for int
+Float is a TypeWrapper for float
+...
+
+
+class Rectangle<T extends Number> {
+	T width;
+	T breadth;
+}
+
+ Rectangle<Integer> r1 = new Rectangle<Integer>(3,4);
+
+ Rectangle<Double> r2 = new Rectangle<Double>(3.2,4.4);
+
+ Rectangle<String> r3 = new Rectangle<String>("A","B"); // not valid
+
+
+
+ class List<T extends Product> {
+ 	T data;
+ }
+
+ List<Mobile>
+ List<Tv>
+ List<WashingMachine>
+
+ ======================================================
+
+
+ interface Comparable {
+ 	int compare(Object other);
+ }
+
+ class Mobile implements Comparable {
+ 	public int compare(Object other) {
+ 		Mobile m = (Mobile) other;
+ 		/.
+ 	}
+ }
+ 
+
+ class Book implements Comparable {
+ 	public int compare(Object other) {
+ 		Book b = (Book) other;
+ 		/.
+ 	}
+ }
+
+
+ ========================
+
+
+ interface Comparable<T> {
+ 	int compare(T other);
+ }
+
+ class Mobile implements Comparable<Mobile> {
+ 	public int compare(Mobile other) {
+ 	 	
+ 	}
+ }
+ 
+
+ class Book implements Comparable<Book> {
+ 	public int compare(Book other) {
+ 	}
+ }
+
+ =============================================================
+
+ interface WindowListener {
+ 	windowOpen();
+ 	windowClose();
+ 	windowResize()
+ 	windowMinimze();
+ 	windowMaximze();
+ }
+
+ public abstract class WindowAdapter implements WindowListener {
+ 	windowOpen() {}
+ 	windowClose() {}
+ 	windowResize() {}
+ 	windowMinimze() {}
+ 	windowMaximze() {}
+ }
+
+// anonymouos class
+ new WindowAdapter() {
+ 	windowOpen() {
+ 		// logic
+ 	}
+ }
+
+========================
+
+
+
+ interface Flyable {
+ 	void fly();
+ }
+
+
+ Flyable f = new Flyable(); // Not valid
+
+class Dummy implements Flyable {
+	public void fly() {
+		jumping with wings from 10th floor
+	}
+}
+
+
+// Anonymous class
+Flyable f = new Flyable() {
+	public void fly() {
+		jumping with wings from 10th floor
+	}
+}
+
+class ==> if state and behaviour exists
+
+class Bird implements Flyable {
+	name; color; age; 
+	eat() {}
+	sound() {}
+	fly() {}
+}
+
+eagle = new Bird();
+sparrow = new Bird();
+
+
+class AeroPlane implements Flyable {
+	name; seating; power
+	fly() {}
+}
+
+
+// i can pass bird, aeroplane or my anonymous class
+void travel(Flyable f) {
+
+}

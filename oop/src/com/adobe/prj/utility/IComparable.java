@@ -1,5 +1,5 @@
 package com.adobe.prj.utility;
 
-public interface IComparable {
-	 int compare(Object other);
+public interface IComparable<T> {
+	 int compare(T other);
 }

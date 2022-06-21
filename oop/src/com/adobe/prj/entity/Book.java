@@ -2,7 +2,7 @@ package com.adobe.prj.entity;
 
 import com.adobe.prj.utility.IComparable;
 
-public class Book implements IComparable {
+public class Book implements IComparable<Book> {
 	private String title;
 	private double price;
 	
@@ -31,9 +31,8 @@ public class Book implements IComparable {
 	}
 
 	@Override
-	public int compare(Object other) {
-		Book b = (Book) other;
-		return this.title.compareTo(b.title); // strcmp
+	public int compare(Book other) {
+		return this.title.compareTo(other.title); // strcmp
 	}
 
 }
