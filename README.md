@@ -1379,7 +1379,7 @@ Instead of having server installed we can have a server plugin handled by Maven
 
 
 Run As ==> Maven build
-Goals: jetty:run
+Goals: jetty:run 
 
 http://localhost:8080/
 
@@ -1388,7 +1388,16 @@ see index.html in "src/main/webapps" folder
 
 ==========================
 
-Resume @ 4:20
+
+index.html
+addProduct.html
+
+doPost() ProductServlet
+
+===============
+
+
+
 
 
 
