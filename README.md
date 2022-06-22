@@ -1208,7 +1208,183 @@ Maven projects ==> standard ==> can be imported and used in various IDEs
 
 =====================
 
-Resume @ 2:00
+class PersistenceException extends Exception {
+	..
+}
 
-====================
+interface UserDao {
+	register(User u) throws PersistenceException
+}
+
+class UserDaoMongoImpl implements UserDao {
+	register(User u)  throws PersistenceException {
+		 try {
+		 		// code
+		 	} catch(MongoException ex) {
+		 		throw new PeristenceException("User registration failed...")
+		 	}
+	}
+}
+
+
+class UserDaoDatabaseImpl implements UserDao {
+	register(User u)  throws PersistenceException {
+		 	try {
+		 		SQL
+		 	} catch(SQLException ex) {
+		 		throw new PeristenceException("User registration failed...")
+		 	}
+	}
+}
+
+===
+
+ Exceptions:
+ 	1) What went wrong? SQLSyntaxException
+ 	2) Where? line class method
+ 	3) Why?  Unknown column 'nasme'
+
+ ===================================
+
+ Web application Development
+
+ Servlet Container / Web Container can host Servlet
+
+ * Servlets are server side Java application
+
+Popular Servlet containers
+* Tomcat
+* Jetty
+* WildFly
+
+===================
+
+Request objects -> encapsulates all data from client ==> form data / browser data / os data
+Response Object --> used to write the data back to client
+
+HTTP methods:
+
+GET
+POST
+PUT
+DELETE
+PATCH
+OPTIONS
+
+* GET
+request from addressbar and hyperlinks are GET requests
+--> to fetch data / READ
+--> can send data to server --> data goes in URL and not payload
+
+* POST
+generally form data is POST
+sends the data in payload / body
+
+GET
+http://localhost:8080/register
+
+
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+	public void doGet(HttpServletRequest req, HttpServletResponse res) {
+
+	}
+	public void doPost(HttpServletRequest req, HttpServletResponse res) {
+		
+	}
+	public void doDelete(HttpServletRequest req, HttpServletResponse res) {
+		
+	}
+}
+
+
+===============
+
+Servlet API 3.5
+
+Prior to Servlet 2.5
+
+Deployment descriptor was web.xml
+
+<servlet>
+	<servlet-name>A</servlet-name>
+	<servlet-class>com.adobe...RegisterServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>A</servlet-name>
+	<url-pattern>/register</url-pattern>
+</servlet-mapping>
+
+=================================
+
+Run As ==> Maven build
+
+Goals : package
+
+Building war: C:\Trainings WS\Adobe Bootcamp\Java\database\target\database-1.0.0.war
+
+take this war file onto any server and deploy
+
+http://localhost:8080/database/
+
+
+====
+
+
+Step 1:
+Run As ==> Maven build
+
+Goals : package
+
+this checks
+<package>war</package>
+default is "jar"
+
+since package is mentioned as "war" looks for "plugin"
+
+<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+</plugin>
+
+
+creates : Building war: C:\Trainings WS\Adobe Bootcamp\Java\database\target\database-1.0.0.war
+
+I can deploy this on any server
+
+Step 2:
+To write servlets we need servlet API
+
+<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+</dependency>
+
+
+Step 3:
+Instead of having server installed we can have a server plugin handled by Maven
+
+<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.3.7.v20160115</version>
+</plugin>
+
+
+Run As ==> Maven build
+Goals: jetty:run
+
+
+==========================
+
+
+
+
 
