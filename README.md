@@ -1060,6 +1060,31 @@ mbs.forEach(System.out::println); // method reference
 mbs.forEach(p -> System.out.println(p)); 
 
 
-====================
+===================================================
+
+Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers.
+
+
+=============
+
+
+$ docker exec -it local-mysql bash
+# mysql -u "root" -p
+Enter Password: Welcome123
+
+mysql> create database java_bootcamp;
+mysql> use java_bootcamp;
+
+Create a table:
+
+mysql> create table products(id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, quantity int);
+
+mysql> desc products;
+
+mysql> select * from products;
+
+
+
+
 
 
