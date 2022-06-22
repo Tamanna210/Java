@@ -10,7 +10,7 @@ import com.adobe.prj.entity.Product;
 public class FetchClient {
 
 	public static void main(String[] args) {
-		ProductDao productDao = new ProductDaoJdbcImpl();
+		ProductDao productDao = new ProductDaoJdbcImpl(); // better use Factory
 			
 		try {
 			List<Product> products = productDao.getProducts();
