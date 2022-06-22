@@ -1084,7 +1084,112 @@ mysql> desc products;
 mysql> select * from products;
 
 
+=======================================================================
+
+JDBC ==> Java Database Connectivity ==> integration librarires for RDBMS [ MySQL / Oracle/ Postgres ..]
+
+Java provides only interfaces; implmentation classes are provided by database vendors
+
+String title; --> MySQL --> VARCHAR ; ORacle--> VARCHAR2 --> SQL Server --> Text
+
+Date date;
+
+rt.jar ==> provided by JDK
+
+mysql-connector.jar
+ojdbc.jar
+postgress.jar 
+...
+
+----
+
+Steps:
+
+1) load database vendor classes into JVM
+	Class.forName("driver");
+
+	Class.forName("oracle.jdbc.Driver"); 
+	Class.forName("com.mysql.jdbc.Driver"); 
 
 
+2) Establish database connection:
+
+	// Java application uses JDBC to connect to database
+	Connection con = DriverManager.getConnection(URL, USER, PASSWORD);
+
+	DriverManager.getConnection() is a factory method
+	Based on URL it creates OracleConnection / MySqlConnection ...
+
+	URL
+	jdbc:mysql://192.168.22.12:3306/java_bootcamp
+
+	jdbc:oracle:thin:@198.33.112.4:1521:java_bootcamp
+
+
+3) Interact/ send SQL with DB
+	3 interfaces are avaialble to interact with database
+
+	a) Statement
+		if SQL is fixed ; all users same sql; SQL is not dependendent on IN parameters
+		select * from products
+
+	b) PreparedStatement
+		ParameterizedStatement' Pre-compiled statement
+
+		select * from users where username = ? and password = ?
+
+		select * from products where id = ?
+
+
+	c) CallableStatement
+
+		Database can have StoredProcedures / functions:
+
+		CREATE PROCEDURE calculateRent(vehicleId IN NUMBER, rentAmount OUT NUMBER) AS rentDuration NUMBER;
+  		BEGIN
+    
+    		SELECT (return_date - rent_date) into rentDuration FROM vehiclerent
+    		WHERE vehicle_id = vehicleId;
+    	    rentAmount := rentDuration * 50;
+  		END;	
+
+  		to call storedProcedure from JAva we use CallableStatement
+
+  		call({calculateRent(..)})
+
+ 4) ResultSet
+
+ 	ID  | NAME | PRICE
+ 	10     A    450.22
+ 	11     B    7820.22
+
+
+ 	REsultSet is a pointer/cursor to fetched records based on select statement
+
+ 	ResultSet rs = statement.executeQuery("select id, name, price from products");
+
+ 	boolean rs.next(); 
+
+ 	while(rs.next()) {
+ 		rs.getInt("ID")
+ 		rs.getString("NAME")
+ 		rs.getDouble("PRICE");
+ 	}
+
+ 5) always close connection in finally block
+
+ 	try {
+
+ 	} catch(SQLException ex) {
+
+ 	} finally {
+ 		con.close();
+ 	}
+
+===
+
+ResultSetMetaData can be use to identity column count and column names and types
+
+======================================================
 
 
