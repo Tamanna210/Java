@@ -988,7 +988,78 @@ Read basics of Exception handling in Java
 
 ==========================================================
 
+Day 3
+
+Streams and Collections
 
 
+int x = 10;
+int y = 10;
+
+x == y // true
+
+Object equality: [ == vs equals()]
+
+String s1 = new String("hello");
+String s2 = new String("hello");
+
+s1 == s2 // false ==> compares address locations
+
+s1.equals(s2); // true
+
+Rectangle r1 = new Rectangle(4,5);
+
+Rectangle r2 = new Rectangle(4,5);
+
+Rectangle r3 = r1; // reference
+
+r1 == r3 // true
+
+r1 == r2 // false
+
+r1.equals(r2); // should evalute to true
+
+Object.java
+public boolean equals(Object obj) {
+        return (this == obj);
+}
+
+================
+
+Set is a data container like List
+* unique elements
+* not ordered
+* index based operations are not supported
+* can't re-order [ sort, shuffle, reverse --> not supported]
+
+HashSet
+	uses hashCode() and equals() to identify duplicate elements and placing element in container
+
+HashCode:
+* numerical value for a object
+* similar objects should have same hashcode
+* objects which are not similar can also have same hashcode
+
+Read TreeSet [ with Comparable and Comparator ]
+Red Black Tree
+
+==================================
+
+Map ==> stores data in key/value pair format
+Key has to be unique; value can be duplicate
+
+* Dictionary
+* Registry
+
+HashMap
+
+==========
+
+mbs.forEach(System.out::println); // method reference
+
+mbs.forEach(p -> System.out.println(p)); 
+
+
+====================
 
 

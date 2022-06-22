@@ -3,6 +3,7 @@ package com.adobe.prj.client;
 import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.adobe.prj.entity.Product;
@@ -57,6 +58,14 @@ public class StreamExample {
 		System.out.println("Total : " + stats.getSum());
 		System.out.println("Count : " + stats.getCount());
 		System.out.println("Avg : " + stats.getAverage());
+		
+		System.out.println("*************");
+		
+		Map<String, List<Product>> prdMap = 
+				products.stream().collect(Collectors.groupingBy(p -> p.getCategory()));
+		
+		List<Product> mbs = prdMap.get("computer");
+		mbs.forEach(System.out::println); // method reference
 	}
 
 }
