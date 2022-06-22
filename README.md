@@ -1192,4 +1192,23 @@ ResultSetMetaData can be use to identity column count and column names and types
 
 ======================================================
 
+Java Build Tools to manage dependencies
+1) Maven
+2) Gradle
+3) ANT
+
+Maven is a build automation tool used primarily for Java projects. Maven can also be used to build and manage projects written in C#, Ruby, Scala, and other languages. 
+Maven manages dependecies ==> pom.xml
+
+pom.xml ==> Project Object model
+* place where dependencies are configured
+* goals are configured [ test, build , run, code analysis]
+
+Maven projects ==> standard ==> can be imported and used in various IDEs
+
+=====================
+
+Resume @ 2:00
+
+====================
 
