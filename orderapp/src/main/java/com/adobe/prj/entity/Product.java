@@ -1,5 +1,6 @@
 package com.adobe.prj.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class Product {
 	private int id;
 	private String name;
 	private double price;
+	@Column(name="quantity")
 	private int quantity;
 	
 	public Product() {

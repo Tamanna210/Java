@@ -11,7 +11,7 @@ import com.adobe.prj.entity.Product;
 @Service
 public class OrderService {
 	@Autowired
-	private ProductDao productDao;
+	private ProductDao productDao; // Spring Data JPA generated class for interface is injected
 	
 	public List<Product> getProducts() {
 		return productDao.findAll();
