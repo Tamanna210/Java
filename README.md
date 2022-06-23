@@ -1839,5 +1839,53 @@ Spring Modules:
 
 ------------
 
-ORM
+ORM ==> Object Relational Mapping ==> Java Object is mapped to RDBMS table
+
+* Hibernate
+* TopLink
+* Kodo
+* OpenJPA
+
+
+@Entity
+@Table(name="products")
+public class Product {
+
+	@Id
+	private int id;
+	
+	private String name;
+	
+	@Column(name="amount")
+	private double price;
+	
+	@Column(name="qty")
+	private int quantity;
+
+
+
+Product p = new Product(13, "sdf", 343, 22);
+
+save(p); // insert into products (id, name, amount, qty) values (? , ? ,? , ?)
+
+findById(Product.class , 12); // select from products where id = 12
+
+
+@Entity
+@Table(name="customers")
+public class Customer {
+	@Id
+	private String email;
+
+}
+
+=============
+
+Spring Boot Project with following dependencies
+1) MySqL
+2) Spring Data JPA
+	Java Persistence API ==> Layer on ORM
+	ORM is a layer on top of JDBC
+
+	
 
