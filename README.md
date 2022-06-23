@@ -1822,4 +1822,22 @@ application.properties ==> no entries
 Run As ==> Run Configurations ==> Arguments => Program Arguments 
 --spring.profiles.active=dev
 
+======================================================================
+
+Spring Modules:
+1) Core Module
+2) Database Integration Module
+ 2.1) jdbc
+ 2.2) ORM
+ 2.3) Transactions
+ 2.3) ODM
+ ...
+3) Spring Web
+	building Servlet based applications
+
+4) AOP [ pending....]
+
+------------
+
+ORM
 
