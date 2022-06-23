@@ -24,4 +24,8 @@ public class OrderService {
 	public Product getProductById(int id) {
 		return productDao.findById(id).get();
 	}
+	
+	public List<Product> byRange(double low, double high) {
+		return productDao.getByRange(low, high);
+	}
 }

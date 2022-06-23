@@ -15,8 +15,10 @@ public class OrderappApplication implements CommandLineRunner {
 	@Autowired
 	private OrderService service;
 	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(OrderappApplication.class, args);
+		
 	}
 
 	@Override
@@ -24,10 +26,18 @@ public class OrderappApplication implements CommandLineRunner {
 		// called as soon as Spring container is created and intialized
 //		listProducts();
 //		getById();
-		addProduct();
+//		addProductData();
+		filterByPrice();
 	}
 
-	private void addProduct() {
+	private void filterByPrice() {
+		List<Product> products = service.byRange(500, 10_000);
+		for(Product p : products) {
+			System.out.println(p);
+		}
+	}
+
+	private void addProductData() {
 		Product p = new Product(0, "LG AC", 45000.00, 100);
 		service.addProduct(p);
 	}

@@ -1887,5 +1887,72 @@ Spring Boot Project with following dependencies
 	Java Persistence API ==> Layer on ORM
 	ORM is a layer on top of JDBC
 
-	
+public interface ProductDao extends JpaRepository<Product, Integer>{
+
+}
+
+No need for DaoImplementation class like:
+@Repository
+class ProductDaoJpaImpl implements ProductDao {
+	//
+}
+
+Spring Data JPA creates class for this interface and implements methods
+
+List<T> findAll();
+findById(ID id);
+save(S entity);
+
+
+
+Optional<Product> opt = productDao.findById(id);
+
+if(opt.isPresent()) {
+	return opt.get();
+}	
+
+
+application.properties
+PART 1:
+Spring data jpa creates a pool of database connections using below details:
+spring.datasource.url=jdbc:mysql://localhost:3306/java_bootcamp
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=Welcome123
+
+PART 2:
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+
+DDL ==> Data Definition Language ==> create, alter , drop
+
+spring.jpa.hibernate.ddl-auto=update
+"update" ==> map class to existing table in database; if table doesn't exist create table; if required alter table	
+
+spring.jpa.hibernate.ddl-auto=verify
+
+"verify" ==> map class to existing table in database; no table present --> exception
+
+
+spring.jpa.hibernate.ddl-auto=create
+
+"create" ==> drop table and re-recreate every time application is executed ==> used only as testing env
+
+
+
+org.hibernate.dialect.MySQL8Dialect
+inform ORM to generate SQL compatable to MySQL8 version
+
+
+org.hibernate.dialect.Oracle9Dialect
+inform ORM to generate SQL compatable to Oracle9 version
+
+
+===============================================================================
+ 
+
+
 
