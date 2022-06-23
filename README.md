@@ -1396,6 +1396,22 @@ doPost() ProductServlet
 
 ===============
 
+Goals: compile ==> javac
+Goals: clean ==> delete .class files
+Goals: package ==> jar or war
+Goals: jetty:run
+Goals: tomcat:run
+
+===================
+
+https://maven.apache.org/download.cgi
+
+$ mvn clean package
+
+$ mvn jetty:run
+
+==========================
+
 
 
 

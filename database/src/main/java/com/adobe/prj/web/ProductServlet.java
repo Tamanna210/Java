@@ -1,8 +1,7 @@
 package com.adobe.prj.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,28 +20,38 @@ public class ProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html"); // MIME type
-		PrintWriter out = response.getWriter(); // opens character stream to browser
-		out.print("<html><body>");
-		out.print("<table border=\"1\">");
-		out.print("<tr><th>ID</th><th>Name</th><th>Price</th></tr>");
-		ProductDao productDao = new ProductDaoJdbcImpl(); // better use Factory
+		ProductDao productDao = new ProductDaoJdbcImpl();
 		try {
-			List<Product> products = productDao.getProducts();
-			for (Product p : products) {
-				out.print("<tr>");
-				out.print("<td>" + p.getId() + "</td>");
-				out.print("<td>" + p.getName() + "</td>");
-				out.print("<td>" + p.getPrice() + "</td>");
-				out.print("</tr>");
-			}
+			request.setAttribute("time", new Date());
+			request.setAttribute("products", productDao.getProducts());
+			request.getRequestDispatcher("list.jsp").forward(request, response);
 		} catch (DaoException e) {
-			out.println(e.getMessage());
+			e.printStackTrace();
 		}
-
-		out.print("</table>");
-		out.print("<a href=\"index.html\">Back</a>");
-		out.print("</body></html>");
+		
+		
+//		response.setContentType("text/html"); // MIME type
+//		PrintWriter out = response.getWriter(); // opens character stream to browser
+//		out.print("<html><body>");
+//		out.print("<table border=\"1\">");
+//		out.print("<tr><th>ID</th><th>Name</th><th>Price</th></tr>");
+//		ProductDao productDao = new ProductDaoJdbcImpl(); // better use Factory
+//		try {
+//			List<Product> products = productDao.getProducts();
+//			for (Product p : products) {
+//				out.print("<tr>");
+//				out.print("<td>" + p.getId() + "</td>");
+//				out.print("<td>" + p.getName() + "</td>");
+//				out.print("<td>" + p.getPrice() + "</td>");
+//				out.print("</tr>");
+//			}
+//		} catch (DaoException e) {
+//			out.println(e.getMessage());
+//		}
+//
+//		out.print("</table>");
+//		out.print("<a href=\"index.html\">Back</a>");
+//		out.print("</body></html>");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

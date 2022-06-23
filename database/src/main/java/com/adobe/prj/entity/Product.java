@@ -17,6 +17,10 @@ public class Product {
 		this.quantity = quantity;
 	}
 
+	public String getDesc() {
+		return "hello";
+	}
+	
 	public int getId() {
 		return id;
 	}
