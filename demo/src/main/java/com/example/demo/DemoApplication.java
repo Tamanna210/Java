@@ -16,11 +16,10 @@ public class DemoApplication {
 //		AppService service = (AppService) ctx.getBean("appService");
 		
 		service.doTask();
-		
-		String[] names = ctx.getBeanDefinitionNames();
-		for(String name : names) {
-			System.out.println(name);
-		}
+		/*
+		 * String[] names = ctx.getBeanDefinitionNames(); for(String name : names) {
+		 * System.out.println(name); }
+		 */
 	}
 
 }

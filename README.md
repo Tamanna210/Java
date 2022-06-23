@@ -1727,6 +1727,99 @@ ctx.scanPackages("com.example.demo");
 
 ===================
 
+Problem --> 2 beans of EmployeeDao
 
+Solution 1:
+Mark one of the bean as @Primary
+
+@Repository
+@Primary
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+	@Override
+	public void addEmployee() {
+		System.out.println("added in database!!!");
+	}
+
+}
+
+
+Solution 2:
+use @Qualifier
+
+
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+	@Override
+	public void addEmployee() {
+		System.out.println("added in database!!!");
+	}
+
+}
+
+
+@Repository
+public class EmployeeDaoFileImpl implements EmployeeDao {
+
+	@Override
+	public void addEmployee() {
+		System.out.println("file code...");
+	}
+
+}
+
+
+@Service
+public class AppService {
+	@Autowired
+	@Qualifier("employeeDaoJdbcImpl")
+	private EmployeeDao empDao;
+	
+	public void doTask() {
+		empDao.addEmployee();
+	}
+}
+
+
+==============
+
+
+Solution 3:
+
+using @Profile
+
+
+@Repository
+@Profile("dev")
+public class EmployeeDaoFileImpl implements EmployeeDao {
+
+
+@Repository
+@Profile("prod")
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+
+
+@Service
+public class AppService {
+	@Autowired
+	private EmployeeDao empDao;
+	
+3.1)
+application.properties
+spring.profiles.active=dev
+
+or
+
+spring.profiles.active=prod
+
+
+3.2)
+
+application.properties ==> no entries
+
+Run As ==> Run Configurations ==> Arguments => Program Arguments 
+--spring.profiles.active=dev
 
 
