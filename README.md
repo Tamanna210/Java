@@ -1412,10 +1412,320 @@ $ mvn jetty:run
 
 ==========================
 
+Day 4
+
+Recap:
+Maven build tool
+* dependency [ "jar" files ]
+	a.jar ==> b.jar ==> c.jar => trasitive dependencies
+
+ pom.xml
+ 	<dependency>
+ 		<groupId>mysql</groupId>
+ 		<artifactId>mysql-connector.jar</artifactId>
+ 		<version>5.1.27</version>
+ 	</dependency>
+
+ 	Local repo [.m2] ==> Remote Respoisitry [ Adobe proxy server ] ==> Central Repository [ CDN ]
+
+
+ pom.xml is what is shared and used by all team members
 
 
 
+ Maven Goals:
 
+ 	 plugin
+ 	maven-compiler-plugin
+ 		source / output ==> 1.8
+
+
+* mvn compile
+
+Run As ==> Maven Build ==> Goal: compile
+
+
+* mvn package
+Run As ==> Maven Build ==> Goal: package
+
+pom.xml
+1)	<package>jar</package>
+
+	Maven creates "jar" file for the project
+
+2) <package>war</package>
+	
+	maven-war-plugin
+
+	Maven creates "war" file for the project ==> can be deployed on server
+
+	"war" can be taken to "jboss", "apache", "weblogic", "websphere", "glassfish" 
+
+3) jetty-plugin
+	plugin for web server ==> good for testing
+
+	mvn jetty:run
+
+	Run As ==> Maven Build ==> Goal: jetty:run
+
+	war is deployed on 'jetty' server configured as plugin; jetty server starts on port 8080 by default
+
+------------
+
+"jar", "war", "ear" , "sar", "pom"
+
+======================================================
+
+Web Server ==> handles http request
+
+Web Container / Servlet Container ==> to run Servlet [ server side java code] ==> dynamic content
+
+
+@WebServlet("/products")
+public class ProductServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+	}
+}
+
+http://localhost:8080/products
+
+GET, POST, PUT, DELETE
+
+address bar or hyperlink ==> GET request
+
+
+Query Parameter
+http://google.com?search=java
+
+request.getParameter("search");
+
+=============================
+
+
+
+Exception handling
+
+1) any exception which can be handled using conditional statement don't use try catch
+
+Product p;
+
+p.setName("Dell"); // NullPointerException
+
+public void addProduct(Product p) {
+	if(p ! = null) {
+		p.getName();
+	}
+}
+
+Avoid:
+
+
+public void addProduct(Product p) {
+	try {
+		p.getName();
+	} catch(NullPointerException ex) {
+
+	}
+	}
+}
+
+============================================================
+
+Checked and Unchecked exceptions
+
+Unchecked exceptions ==> exceptions which happen for reasons within JRE
+NullPointer, ArithmeticException [ / 0], IndexOutOfBoundsExceptions, ClassCastException
+
+
+int[] data = [5,2,11];
+
+int val = data[9]; //IndexOutOfBoundsExceptions
+
+==
+Checked Exceptions
+
+==> happen due to reasonse outside JRE
+
+Class.forName("...")
+
+====
+
+JSP ==> Java Server Pages
+
+static + dynamic content
+
+JSP --> Servlet
+
+
+${product.id} ===> product.getId()
+
+${product.desc}  ==> product.getDesc()
+
+===================
+
+Web application devlopment ==> Frameworks "jersey" / "play"  "spring mvc"
+
+=========================================================================================
+
+
+Spring Framework and Hibernate Framework ==> Spring Boot
+
+
+Spring Tool Suite
+
+Help ==> Eclipse Market place ==> STS ==> Go
+
+Spring Tools 4 (aka Spring Tool Suite) 4.15.1.RELEASE
+
+
+===================================
+
+Bean ==> reusable software component
+
+Bean ==> object managed by spring container
+
+Spring Framework
+
+* provides a lightweight container for building enterprise application
+
+Core Container provides 
+1) Lifecycle managment of beans [ spring creates / destroys objects]
+	new ProductDaoJdbcImpl(); // won't do this
+2) Dependency Injection
+
+Metadata 
+1) XML
+2) Annotation
+
+public interface EmployeeDao {
+	addEmployee()
+}
+
+public class EmployeeDaoJdbcImpl implments EmployeeDao {
+	addEmployee() {}	
+}
+
+
+public class EmployeeDaoFileImpl implments EmployeeDao {
+	addEmployee() {}	
+}
+
+EmployeeDao file = new EmployeeDaoFileImpl(); // not required
+
+public class AppService {
+	private EmployeeDao employeeDao;
+
+	public void setEmployeeDao(EmployeeDao edao) {
+		this.employeeDao = edao;
+	}
+
+	public void doTask() {
+		employeeDao.addEmployee();
+	}
+}
+
+
+---
+
+beans.xml
+
+<bean id="jdbc" class="pkg.EmployeeDaoJdbcImpl" / >
+<bean id="file" class="pkg.EmployeeDaoFileImpl" / >
+
+<bean id="service" class="pkg.AppService">	
+	<property name="employeeDao" ref="jdbc" />
+</bean>
+
+ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+
+ctx.getBean("service");
+
+
+=========
+
+Spring creates objects of classes which has one of these annotations:
+1) Component
+2) Repository
+3) Service
+4) Controller
+5) RestController
+6) Configuration
+
+
+
+public interface EmployeeDao {
+	addEmployee()
+}
+
+@Repository
+public class EmployeeDaoJdbcImpl implments EmployeeDao {
+	addEmployee() {}	
+}
+
+
+@Service
+public class AppService {
+	@Autowired
+	private EmployeeDao employeeDao;
+ 
+	public void doTask() {
+		employeeDao.addEmployee();
+	}
+}
+
+
+ApplicationContext ctx = new AnnotationConfigApplicationContext();
+
+
+ctx.getBean("appService");
+
+
+=================
+
+Spring Boot ==> framework on top of Spring framework
+Highly Opiniated framework
+
+* easy to develop using Spring boot
+* lots of configurations comes out of the box
+for example:
+1) if we are devlopping web applications
+--> Tomcat embedded server is provided as plugin
+--> war plugin
+--> handling JSON 
+
+2) if we are connecting to database
+--> database connection pool comes out of the box
+--> just provide driver, url. user, password in "application.properties"
+--> Hikari library for connection pool
+
+.........
+
+https://start.spring.io
+
+
+
+SpringApplication.run(DemoApplication.class, args);
+@SpringBootApplication
+ --> @ComponentScan("com.example.demo")
+ 	==> scan for aboe mentioned 6 annotations from this package onwards and create instances of
+--> @EnableAutoConfiguration
+	==> create datasource / Tomcat / built-in beans
+
+--> it is @Configuration	
+same as
+
+ApplicationContext ctx = new AnnotationConfigApplicationContext();
+ctx.scanPackages("com.example.demo");
+
+===================
 
 
 
