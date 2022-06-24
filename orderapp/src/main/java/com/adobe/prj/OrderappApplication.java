@@ -34,7 +34,7 @@ public class OrderappApplication implements CommandLineRunner {
 //		filterByPrice();
 //		modifyProduct();
 		
-		createOrder();
+//		createOrder();
 	}
 
 	private void createOrder() {

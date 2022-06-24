@@ -2174,6 +2174,182 @@ Service ==> one per actor [ CustomerService, ManagerService]; one per applicatio
 
 =============
 
+RentalApp
+
+* Rental.java entity
+
+	@ManyToOne
+	@JoinColumn(..)
+	Vehicle vehicle;
+
+	@ManyToOne
+	@JoinColumn(...)
+	Customer customer;
+
+
+====================================
+
+Spring Module:
+
+* Spring MVC Module
+==> Spring web along with mysql and jpa
+
+
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+* Adds Tomcat Web embedded server running on port 8080
+* DispatcherServlet  ==> will act like FrontController [ url-mapping ==> * ]
+
+@WebServlet(' * ')
+public class DispatcherServlet extends Servlet {
+
+}
+
+@WebServlet('/products')
+public class ProductServlet extends Servlet {
+
+}
+
+if port has to be changed
+application.properties
+server.port=9999 
+
+
+
+
+
+@RestController
+@RequestMapping("/products") 
+public class ProductController {
+
+	@GetMapping()
+	m1() {
+
+	}
+
+	@PostMapping()
+	m2() {
+
+	}
+
+	@DeleteMapping()
+	m3() {
+
+	}
+}
+
+
+
+
+@RestController
+@RequestMapping("/orders") 
+public class OrderController {
+
+	@GetMapping()
+	m1() {
+
+	}
+
+	@PostMapping()
+	m2() {
+
+	}
+
+	@DeleteMapping()
+	m3() {
+
+	}
+}
+
+
+===
+
+Just using Servlet without Spring MVC
+
+
+@WebServlet(" * ")
+public class ProductServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+				String uri = request.getRequestUri();
+				if(uri.endsWith("/products")) {
+						if(reqest.getMethod().equals("GET")) {
+
+						} else if(reqest.getMethod().equals("POST")) {
+
+						}
+
+					} else if uri.endsWith("/orders") {
+							if(reqest.getMethod().equals("GET")) {
+
+						} else if(reqest.getMethod().equals("POST")) {
+
+						}
+					}
+	}
+}
+
+===========
+
+
+@WebServlet("/products")
+public class ProductServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+}
+
+
+@WebServlet("/orders")
+public class OrderServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+=========================
+
+Security / Encode / encryption / Conversion
+
+============================
+
+Spring MVC comes with DataConversion [sting to double, .. ] / HttpMessageHandlers / ContentNegotiationHandlers
+* Jackson library
+	Jackson ObjectMapper class and how to serialize Java objects into JSON and deserialize JSON string into Java objects
+
+Other options are GSON / Jettison / Moxy
+
+	JSON ==> JavaScript Object notation
+	Product p = new Product(1, "iPhone", "mobiel", 124447.44);
+
+	{"id":1,"name":"iPhone","price":124447.44,"category" : "mobile"}
+
+============================
+
+RESTful Web Services
+
+Representational State Transfer
+
+Resource ==> present on server [ database / file / printers]
+
+State ==> value of the resource at a given point of time
+
+Represention ==> XML / JSON / CSV / RSS / ATOM
+
+Heterogenous clients:
+web clients might need it in JSON [ React / Angular]
+Stand alone client ==> XML 
+Mobile [ Android]
+
+====
+
+@ResponseBody List<Product>
+
+List<Product> is converted to json / xml based on "accept": "application/json" HTTP header and placed into response body
+
+POSTMAN
+==> To test REST APi
 
 
 
