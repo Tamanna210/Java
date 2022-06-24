@@ -2470,3 +2470,43 @@ RESTful Web services Documentation
 			<version>1.6.8</version>
 		</dependency>
 
+http://localhost:8080/swagger-ui/index.html
+
+================================================================
+
+Read jpa.pdf => one-to-one; many-to-many
+
+Problem Statements
+
+1) Complete Vehicle Rental applicaiton ==> RESTful web services
+	a) Add a Vehicle
+	b) rent a Vehicle
+	c) Return Vehicle
+
+
+2) Project app
+	Entities:
+	a) Employee ==> email; firstName; lastName; joined_date; end_date
+	b) Client ==> id; name; address [ Reliance; TataSky]
+	c) Project ==> id; name ; client [ Association]; details; start_date; end_date
+	d) EmployeeProject 
+		id | email_fk | project_fk | start_date | end_date | role
+
+		1 |  sam@adobe.com  | 121 | 12-10-2019 | 3-5-2021 | sr developer
+
+
+	Task:
+	1) add employee
+	2) add client
+	3) add project
+	4) assign employee to project
+	5) list employees working in a project
+
+================================================
+
+
+
+
+
+
+
