@@ -2155,6 +2155,24 @@ orderDao.findAll(); // gets orders and it's items also
 
 ==================================
 
+ProductDao.java
+CustomerDao.java
+OrderDao.java
+
+No need for ItemDao.java [ Cascade takes care]
+
+============
+
+Dao ==> one per table
+
+Service ==> one per actor [ CustomerService, ManagerService]; one per application
+
+@Transactional
+
+==> Dirty checking
+==> when data is pulled from database; any changes done entity ==> triggers update SQL
+
+=============
 
 
 

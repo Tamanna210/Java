@@ -46,7 +46,7 @@ public class OrderService {
 			p.setQuantity(p.getQuantity() - i.getQty()); // DIRTY ==> update SQL
 		}
 		order.setTotal(total);
-		orderDao.save(order); // this saves order and items also
+		orderDao.save(order); // this saves order and items also ==> CASCADE
 	}
 	
 	public List<Order> getOrders() {
