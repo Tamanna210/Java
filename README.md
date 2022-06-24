@@ -2030,3 +2030,43 @@ public Product updateProduct(double price, int id) {
 
 If no exception occurs in this method ==> commit happens
 if any exception ==> rollback
+
+
+======================================
+
+Entities association [ Relationship between entities]
+
+Uber / OLA
+* Customer
+* Driver
+* Vehicle
+* Payment
+* Trip
+* Address ==> Source ; Destination
+
+Customer books for a Trip
+Driver and Vehicle is assigned for the Trip
+Payment is done by customer for the trip
+
+
+Swiggy / Amazon
+
+* Product
+* Customer
+* Order
+* Item
+* Address
+* Payment
+
+
+mysql> select * from customers;
+
+
+mysql> insert into customers values ('peter@adobe.com', 'Peter', 'Smith');
+
+
+mysql> insert into customers values ('sam@adobe.com', 'Samantha', 'Rai');
+
+
+
+
