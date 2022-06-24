@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,8 +35,9 @@ public class Order {
 	@JoinColumn(name="customer_fk") // customer_fk is a foreign key in orders references email of customers
 	private Customer customer; // order is by a customer
 	
+	
 	// order has many items
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="order_fk")
 	private List<Item> items = new ArrayList<>();
 

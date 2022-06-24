@@ -2058,6 +2058,11 @@ Swiggy / Amazon
 * Address
 * Payment
 
+Customer > one to many ==> Order
+
+Order --> many to one --> Customer
+
+
 
 mysql> select * from customers;
 
@@ -2066,6 +2071,90 @@ mysql> insert into customers values ('peter@adobe.com', 'Peter', 'Smith');
 
 
 mysql> insert into customers values ('sam@adobe.com', 'Samantha', 'Rai');
+
+
+
+@JoinColumn is to introduce a Foreign Key
+
+* for ManyToOne ==> FK comes in the owning table
+* for OneToMany ==> FK comes in the child
+
+
+* OneToMany
+* ManyToOne
+* OneToOne
+* ManyToMany
+
+===========================
+
+
+Order has 4 items;
+
+save(order);
+save(i1);
+save(i2);
+save(i3);
+save(i4);
+
+---
+
+Delete
+
+delete(order);
+delete(i1);
+delete(i2);
+delete(i3);
+delete(i4);
+
+===
+
+Cascade:
+
+@OneToMany(cascade = CascadeType.ALL)
+@JoinColumn(name="order_fk")
+private List<Item> items = new ArrayList<>();
+
+
+Order has 4 items;
+
+save(order); // cascade takes care of saving items also
+
+delete(order); // cascade takes care of deleting items also
+
+UI ==> Checkout button ==> save order ==> saving items [thro cascade]
+
+
+No need for ItemDao
+
+=============================
+
+orderDao.findAll();
+	==> select * from orders;
+
+itemDao.getItemByOrderId(int id); // execute n times based on number of orders
+
+if 5 orders exist:
+select * from orders ==> 5 records
+
+select * from items where order_fk = 1;
+select * from items where order_fk = 2;
+select * from items where order_fk = 3;
+select * from items where order_fk = 4;
+select * from items where order_fk = 5;
+
+
+Fetch:
+
+@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+@JoinColumn(name="order_fk")
+private List<Item> items = new ArrayList<>();
+
+
+One call from application:
+orderDao.findAll(); // gets orders and it's items also
+
+==================================
+
 
 
 
