@@ -2,6 +2,8 @@ package com.adobe.prj.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,11 @@ public class OrderService {
 	
 	public List<Product> byRange(double low, double high) {
 		return productDao.getByRange(low, high);
+	}
+	
+	@Transactional
+	public Product updateProduct(double price, int id) {
+		productDao.updateProduct(price, id);
+		return  getProductById(id);
 	}
 }

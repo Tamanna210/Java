@@ -1956,3 +1956,77 @@ inform ORM to generate SQL compatable to Oracle9 version
 
 
 
+Day 5
+
+Spring boot application
+* mysql
+* jpa ==> spring data jpa
+
+ORM ==> Entity class <---> database table
+
+ORM takes care of DDL (create, alter, drop) and DML (insert, delete, update , select) operations
+
+public interface EmployeeDao extends JpaRepository<Employee, Integer> {
+
+}
+
+by adding above interface : methods for CRUD are made available in implmentation class genereated by Spring data jpa
+
+we don't need to write a @Repository class
+
+important ==> database config has to be done in "applicaiton.properties" => DRIVER, URL, USER, 
+
+
+
+interface ProductDao {
+
+}
+
+JDBC code
+
+@Repository 
+class ProductdaoJdbcImpl implments ProductDao {
+	@Override
+	public void addProduct(Product p) throws DaoException {
+		String SQL = "INSERT INTO products (id, name, price, quantity) VALUES (0, ?, ?, ?)";
+		Connection con = null;
+		try {
+			con = DriverManager.getConnection(URL, USER, PWD);
+			PreparedStatement ps = con.prepareStatement(SQL);
+			ps.setString(1, p.getName());
+			ps.setDouble(2, p.getPrice());
+			ps.setInt(3, p.getQuantity());
+			ps.executeUpdate(); // INSERT, DELETE, UPDATE
+		} catch (SQLException e) {
+			throw new DaoException("unable to add product", e);
+		} finally {
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+				
+}
+
+==========================
+
+JP-QL ==> Java Persistence API query language
+
+---
+
+By default built-in methods of JpaRepository like save(), delete() have trasnaction settings done [ auto commit = true]
+
+OrderService.java
+
+productDao.save(p); // commits
+
+----
+
+@Transactional
+public Product updateProduct(double price, int id) {
+		productDao.updateProduct(price, id);
+		return  getProductById(id);
+}
+
+
+If no exception occurs in this method ==> commit happens
+if any exception ==> rollback

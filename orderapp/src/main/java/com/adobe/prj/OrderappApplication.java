@@ -27,7 +27,13 @@ public class OrderappApplication implements CommandLineRunner {
 //		listProducts();
 //		getById();
 //		addProductData();
-		filterByPrice();
+//		filterByPrice();
+		modifyProduct();
+	}
+
+	private void modifyProduct() {
+		Product p = service.updateProduct(999.99, 4);
+		System.out.println(p.getPrice() + "," + p.getName());
 	}
 
 	private void filterByPrice() {
