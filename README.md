@@ -2495,6 +2495,7 @@ Problem Statements
 		1 |  sam@adobe.com  | 121 | 12-10-2019 | 3-5-2021 | sr developer
 
 
+
 	Task:
 	1) add employee
 	2) add client
@@ -2505,8 +2506,44 @@ Problem Statements
 ================================================
 
 
+Monday: exception handling; validation; testing and Security
+
+
+
+Actor 
+aid | name
+
+Movie 
+
+mid | name
+
+looks like many-to-many
+
+* extra attributes
+in a movie actor plays a role [ where should "role" field come? ]
+
+ActorMovie
+aid | mid | role
+1     1     comedian
+1     2     protoginst
 
 
 
 
+
+Employee
+name
+email
+start_date
+end_date
+
+Project
+
+"jr developer"
+"Tech Lead"
+
+EmployeeProject
+id | eid | pid | start_date | end_Date | role
+
+==========
 
