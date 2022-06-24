@@ -18,8 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.adobe.prj.entity.Product;
 import com.adobe.prj.service.OrderService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/products")
+@Tag(name = "products", description = "the product API")
 public class ProductController {
 	@Autowired
 	private OrderService service;
@@ -38,6 +44,9 @@ public class ProductController {
 	}
 	
 	// GET http://localhost:8080/api/products/4
+	@Operation(summary = "Get a product by its ID")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Found product for given id"),
+			@ApiResponse(responseCode = "404", description = "product for given id Not Found") })
 	@GetMapping("/{id}")
 	public @ResponseBody Product getProduct(@PathVariable("id") int id) {
 		return service.getProductById(id);

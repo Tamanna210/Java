@@ -2358,3 +2358,115 @@ Http Headers
 accept ==> server to client
 content-type: client --> server
 
+Browser:
+http://localhost:8080/api/products/
+http://localhost:8080/api/products/2
+
+
+To test PUT/ POST/ DELETE we need POSTMAN
+
+POSTMAN
+
+POST http://localhost:8080/api/products/
+Headers:
+Accept: application/json
+Content-Type: application/json
+
+Body (raw) :
+{
+    "name": "Panasonic Tv",
+    "price": 98000.00,
+    "quantity" : 100
+}
+
+===
+PUT  http://localhost:8080/api/products/1
+Headers:
+Accept: application/json
+Content-Type: application/json
+
+Body (raw) :
+{
+    "price": 198000.00
+}
+
+
+=================
+
+1)
+GET
+ http://localhost:8080/api/products/
+
+ gets all products
+
+2) Extra PathParameter @PathVariable (/)
+to get based on PK
+
+GET
+ http://localhost:8080/api/products/3
+
+ get product whose id is 3
+
+3) QueryParameter (?)
+
+GET
+ http://localhost:8080/api/products?page=1&size=20
+ http://localhost:8080/api/products?low=500&high=100
+
+ => subset of data
+
+ ================
+
+ Task
+
+ Add CustomerController
+
+ GET http://localhost:8080/api/customers
+
+ get all customers
+
+ POST http://localhost:8080/api/customers
+
+ body should have customer data ==> adding customer
+
+=====
+
+POST http://localhost:8080/api/orders
+
+{
+	"customer" : {"email": "peter@adobe.com"},
+	"items": [
+		{"product": {"id" : 2}, "qty": 3},
+		{"product": {"id" : 3}, "qty": 1}
+	]
+}
+
+============
+
+orderDate	"2022-06-24T06:53:17.639+00:00"
+
+application.properties
+spring.jackson.date-format=dd/MMM/yyyy hh:mm:ss
+
+orderDate 24/Jun/2022 06:53:17"
+
+=============================================
+
+@JsonFormat(pattern = "dd-MMMM-yyyy hh:mm:ss")
+@Temporal(TemporalType.TIMESTAMP)
+@Column(name="order_date")
+private Date orderDate = new Date();
+
+====================
+
+
+RESTful Web services Documentation
+
+==> OpenAPI
+
+<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.8</version>
+		</dependency>
+
