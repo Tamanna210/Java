@@ -2294,6 +2294,8 @@ public class ProductServlet extends HttpServlet {
 	}
 }
 
+
+
 ===========
 
 
@@ -2351,5 +2353,8 @@ List<Product> is converted to json / xml based on "accept": "application/json" H
 POSTMAN
 ==> To test REST APi
 
-
+=============
+Http Headers
+accept ==> server to client
+content-type: client --> server
 
