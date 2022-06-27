@@ -2734,7 +2734,7 @@ Spring Test provides:
 
 ==================
 
-
+MockMvc can be used to perform CRUD operations using GET, POST, PUT , DELETE, ...
 
 
 
