@@ -2631,6 +2631,23 @@ public ResponseEntity<Product> addProduct(@RequestBody Product p) {
 
 ==========
 
+Check:
+1) NotFoundException.java
+2) OrderService.java ==> throws NotFoundException
+3) ProductController.java ==> throws NotException
+4) GlobalExceptionHandler ==> @ControllerAdvice and @ExceptionHandler
+
+5) update OrderAppApplication.java to handle exception
+
+http://localhost:8080/api/products/2886
+{"message":"Product with id 2886 doesn't exist!!!","timestamp":"27/June/2022 05:21:17"}
+
+
+http://localhost:8080/api/products/2
+{"id":2,"name":"Tata Sky","price":8000.0,"quantity":97,"desc":"hello"}
+
+================================================
+
 
 
 
