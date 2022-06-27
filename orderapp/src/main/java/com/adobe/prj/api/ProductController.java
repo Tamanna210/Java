@@ -2,8 +2,11 @@ package com.adobe.prj.api;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +30,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/products")
 @Tag(name = "products", description = "the product API")
+@Validated
 public class ProductController {
 	@Autowired
 	private OrderService service;
@@ -65,7 +69,7 @@ public class ProductController {
 	 */
 	@PostMapping()
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public @ResponseBody Product addProduct(@RequestBody Product p) {
+	public @ResponseBody Product addProduct(@RequestBody @Valid Product p) {
 		return service.addProduct(p);
 	}
 	

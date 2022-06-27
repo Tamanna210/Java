@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="products")
@@ -14,8 +16,12 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
 	private int id;
+	@NotBlank(message="Name is required")
 	private String name;
+	@Min(value = 10, message="Price ${validatedValue} should be more than {value}")
 	private double price;
+	
+	@Min(value = 0, message="Quantity ${validatedValue} should be more than {value}")
 	@Column(name="quantity")
 	private int quantity;
 	

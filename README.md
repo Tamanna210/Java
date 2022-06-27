@@ -2646,7 +2646,35 @@ http://localhost:8080/api/products/2886
 http://localhost:8080/api/products/2
 {"id":2,"name":"Tata Sky","price":8000.0,"quantity":97,"desc":"hello"}
 
-================================================
+=====================================================
+
+Validation of Payload
+
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+
+public class Product {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
+	private int id;
+	@NotBlank(message="Name is required")
+	private String name;
+	@Min(value = 10, message="Price ${validatedValue} should be more than {value}")
+	private double price;
+	
+	@Min(value = 0, message="Quantity ${validatedValue} should be more than {value}")
+	@Column(name="quantity")
+	private int quantity;
+	
+---
+@Validated
+public class ProductController {
+	public @ResponseBody Product addProduct(@RequestBody @Valid Product p) {
+		///
+}	
 
 
 
