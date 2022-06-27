@@ -2545,5 +2545,94 @@ Project
 EmployeeProject
 id | eid | pid | start_date | end_Date | role
 
+class EmployeeProject {
+	@ManyToOne
+	@JoinColumn(name ="eid")
+	Employee employee;
+	@ManyToOne
+	@JoinColumn(name = "pid")
+	Project project;
+
+}
 ==========
+
+Day 6
+
+interface EmployeeProjectDao extends JpaRepository<EmployeeProject, Integer> {
+
+	@Query("select e.email, e.firstName,  ep.role, p.name from EmployeeProject ep inner join ep.project p inner join ep.employee")
+	public List<Object[]> getReport();
+}
+
+// not a entity class ==> DTO class
+
+public class EmployeeProjectReport {
+	email
+	firstName
+	role
+	name
+
+	constructors and getters & setters
+}
+
+
+
+interface EmployeeProjectDao extends JpaRepository<EmployeeProject, Integer> {
+
+	@Query("select new com.adobe.prj.entity(e.email, e.firstName,  ep.role, p.name) from EmployeeProject ep inner join ep.project p inner join ep.employee")
+	public List<EmployeeProjectReport> getReport();
+}
+
+
+
+List<Object[]>
+	[["Peter","Smith","24/June/2022 10:55:13",24680.0],["Samantha","Rai","24/June/2022 09:28:05",252040.0],["Samantha","Rai","24/June/2022 06:53:17",252040.0]]
+
+
+@Query("select new com.adobe.prj.dto.OrderReport(c.firstName, c.lastName, o.orderDate, o.total) from Order o inner join o.customer c")
+public List<OrderReport> getReport();
+
+
+[{"firstName":"Peter","lastName":"Smith","orderDate":"24/June/2022 10:55:13","total":24680.0},{"firstName":"Samantha","lastName":"Rai","orderDate":"24/June/2022 09:28:05","total":252040.0},{"firstName":"Samantha","lastName":"Rai","orderDate":"24/June/2022 06:53:17","total":252040.0}]
+
+==============================================================================
+
+Exception Handling in RestController
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+	@ExceptionHandler(name=NotFoundException.class)
+	returntype m1(NotFoundException ex) {
+
+	}
+
+	@ExceptionHandler(name=PersistenceException.class)
+	returntype m2(PersitenceException ex) {
+
+	}
+}
+
+===============
+
+@PostMapping()
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public @ResponseBody Product addProduct(@RequestBody Product p) {
+		return service.addProduct(p);
+	}
+
+
+or
+
+@PostMapping()
+public ResponseEntity<Product> addProduct(@RequestBody Product p) {
+		return new ResponseEntity<Product>(service.addProduct(p), HttpStatus.CREATED);
+}
+
+==========
+
+
+
+
+
 

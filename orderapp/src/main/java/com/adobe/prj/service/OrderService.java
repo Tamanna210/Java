@@ -1,6 +1,7 @@
 package com.adobe.prj.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -62,8 +63,12 @@ public class OrderService {
 		return productDao.save(p);
 	}
 	
-	public Product getProductById(int id) {
-		return productDao.findById(id).get();
+	public Product getProductById(int id) throws NotFoundException {
+		Optional<Product> opt = productDao.findById(id);
+		if(opt.isPresent()) {
+			return opt.get();
+		}
+		else throw new NotFoundException("Product with id " + id  + " doesn't exist!!!");
 	}
 	
 	public List<Product> byRange(double low, double high) {
@@ -71,7 +76,7 @@ public class OrderService {
 	}
 	
 	@Transactional
-	public Product updateProduct(double price, int id) {
+	public Product updateProduct(double price, int id) throws NotFoundException {
 		productDao.updateProduct(price, id);
 		return  getProductById(id);
 	}

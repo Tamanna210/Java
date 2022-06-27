@@ -1,6 +1,5 @@
 package com.adobe.prj;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import com.adobe.prj.entity.Customer;
 import com.adobe.prj.entity.Item;
 import com.adobe.prj.entity.Order;
 import com.adobe.prj.entity.Product;
+import com.adobe.prj.service.NotFoundException;
 import com.adobe.prj.service.OrderService;
 
 @SpringBootApplication
@@ -64,8 +64,15 @@ public class OrderappApplication implements CommandLineRunner {
 	}
 
 	private void modifyProduct() {
-		Product p = service.updateProduct(999.99, 4);
-		System.out.println(p.getPrice() + "," + p.getName());
+		Product p;
+		try {
+			p = service.updateProduct(999.99, 4);
+			System.out.println(p.getPrice() + "," + p.getName());
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	private void filterByPrice() {
@@ -81,8 +88,14 @@ public class OrderappApplication implements CommandLineRunner {
 	}
 
 	private void getById() {
-		Product p = service.getProductById(2);
-		System.out.println(p);
+		Product p;
+		try {
+			p = service.getProductById(2);
+			System.out.println(p);
+		} catch (NotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void listProducts() {
