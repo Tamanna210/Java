@@ -2736,6 +2736,55 @@ Spring Test provides:
 
 MockMvc can be used to perform CRUD operations using GET, POST, PUT , DELETE, ...
 
+================
+
+Spring creates instances of classes which has one of these annotations:
+1) @Component
+2) @Repository
+3) @Service
+4) @Controller ==> jsp / Thmyeleaf for view ==> SSR
+5) @RestController ==> JSON or XML or csv ==> CSR [ React / Angular / Android / Xamrin / Swift]
+6) @Configuration
+
+If there is a class provided by 3rd party library; this class has to be managed by spring container
+
+public class ObjectMapper
+    extends ObjectCodec
+    implements Versioned,
+        java.io.Serializable // as of 2.1
+{
+}
+
+
+@Service
+public class MyService {
+	@Autowired
+	ObjectMapper mapper; // this throws error
+}
+
+--
+
+Spring uses default constructor for object creation; if a class doesnt have default constructor we can;t place any of the above annotations
+
+Solution:
+use factory method
+
+
+@Configuration
+public class AppConfig {
+	@Value("${ip}")
+	private String ip;
+	@Value("${port}")
+	private int port;
+	// factory method
+	@Bean
+	public EmailConnection getEmailConnection() {
+		return new EmailConnection(ip, port);
+	}
+}
+
+
+
 
 
 

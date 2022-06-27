@@ -10,7 +10,11 @@ public class AppService {
 	@Autowired
 	private EmployeeDao empDao;
 	
+	@Autowired
+	private EmailConnection con;
+	
 	public void doTask() {
+		con.sendMessage("Employee added");
 		empDao.addEmployee();
 	}
 }
