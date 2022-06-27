@@ -43,6 +43,7 @@ public class ProductController {
 			@RequestParam(name="high", defaultValue = "0.0") double high) {
 		if(low == 0.0 && high == 0.0) {
 			return service.getProducts();
+//			return service.byRange(0,0);
 		} else {
 			return service.byRange(low, high);
 		}

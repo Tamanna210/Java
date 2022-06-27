@@ -2677,6 +2677,69 @@ public class ProductController {
 }	
 
 
+MethodArgumentNotValidException: 
+
+Validation failed for argument [0] in 
+public com.adobe.prj.entity.Product com.adobe.prj.api.ProductController.addProduct(com.adobe.prj.entity.Product) 
+
+with 2 errors: 
+[Field error in object 'product' on field 'price': rejected value [-999.0]; codes [Min.product.price,Min.price,Min.double,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.price,price]; arguments []; default message [price],10]; 
+default message [Price -999.0 should be more than 10]] 
+
+[Field error in object 'product' on field 'name': rejected value []; codes [NotBlank.product.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.name,name]; arguments []; 
+default message [name]]; default message [Name is required]] ]
+
+=============================================
+
+Integration testing / E2E testing
+* Browser
+* Postman
+
+Java Unit Testing 
+
+The purpose of unit testing is to test the correctness of isolated code. 
+A unit component is an individual function or code of the application.
+
+
+Unit Testing Framework:
+1) JUnit
+2) TestNG
+
+===
+
+RestController to be tested
+
+
+@RestController
+@RequestMapping("/api/products")
+public class ProductController {
+	@Autowired
+	private OrderService service;
+
+
+To Test ProductController ==> has OrderService dependency
+
+Mock OrderService
+Mocking Libraries
+1) EasyMock
+2) JMock
+3) Mockito
+
+---
+Spring Test provides:
+1) Mockito --> Mocking library
+2) Hamcrest ==> provides lots of assertion apis / matchers
+3) json-path ==> extract json data [ check https://jsonpath.com/]
+4) JUnit
+
+==================
+
+
+
+
+
+
+
 
 
 
