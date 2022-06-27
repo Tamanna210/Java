@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.adobe.prj.dto.OrderReport;
 import com.adobe.prj.entity.Order;
 import com.adobe.prj.service.OrderService;
 
@@ -24,6 +25,16 @@ public class OrderController {
 	@GetMapping()
 	public @ResponseBody List<Order> getOrders() {
 		return service.getOrders();
+	}
+	
+//	@GetMapping("/report")
+//	public @ResponseBody List<Object[]> getReport() {
+//		return service.getReport();
+//	}
+	
+	@GetMapping("/report")
+	public @ResponseBody List<OrderReport> getReport() {
+		return service.getReport();
 	}
 	
 	@PostMapping()

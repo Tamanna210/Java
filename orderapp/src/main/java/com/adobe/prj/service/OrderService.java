@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.adobe.prj.dao.OrderDao;
 import com.adobe.prj.dao.ProductDao;
+import com.adobe.prj.dto.OrderReport;
 import com.adobe.prj.entity.Item;
 import com.adobe.prj.entity.Order;
 import com.adobe.prj.entity.Product;
@@ -73,5 +74,12 @@ public class OrderService {
 	public Product updateProduct(double price, int id) {
 		productDao.updateProduct(price, id);
 		return  getProductById(id);
+	}
+	
+//	public List<Object[]> getReport() {
+//		return orderDao.getReport();
+//	}
+	public List<OrderReport> getReport() {
+		return orderDao.getReport();
 	}
 }
